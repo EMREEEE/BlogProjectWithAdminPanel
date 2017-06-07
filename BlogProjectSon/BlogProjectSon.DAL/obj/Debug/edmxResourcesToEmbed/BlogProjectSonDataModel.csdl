@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Category_AdminUser" FromRole="AdminUser" ToRole="Category" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Job" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MemberShipDate" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="AdminUserId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="AdminUser" Relationship="Self.FK_Category_AdminUser" FromRole="Category" ToRole="AdminUser" />
+    <Property Name="OrderNumber" Type="Int32" />
+    <NavigationProperty Name="BlogEntries" Relationship="BlogDbModel.FK_BlogEntry_Category" FromRole="Category" ToRole="BlogEntry" />
+  </EntityType>
+  <Association Name="FK_Category_AdminUser">
+    <End Role="AdminUser" Type="Self.AdminUser" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="AdminUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BlogDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <AssociationSet Name="FK_Category_AdminUser" Association="Self.FK_Category_AdminUser">
+      <End Role="AdminUser" EntitySet="AdminUsers" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <EntitySet Name="AdminMenus" EntityType="BlogDbModel.AdminMenu" />
+    <AssociationSet Name="FK_AdminMenu_AdminMenu" Association="BlogDbModel.FK_AdminMenu_AdminMenu">
+      <End Role="AdminMenu" EntitySet="AdminMenus" />
+      <End Role="AdminMenu1" EntitySet="AdminMenus" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="BlogDbModel.User" />
+    <EntitySet Name="BlogEntries" EntityType="BlogDbModel.BlogEntry" />
+    <EntitySet Name="BlogEntryPhotoes" EntityType="BlogDbModel.BlogEntryPhoto" />
+    <AssociationSet Name="FK_BlogEntry_Category" Association="BlogDbModel.FK_BlogEntry_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="BlogEntry" EntitySet="BlogEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogEntry_User" Association="BlogDbModel.FK_BlogEntry_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BlogEntry" EntitySet="BlogEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogEntryPhoto_BlogEntry" Association="BlogDbModel.FK_BlogEntryPhoto_BlogEntry">
+      <End Role="BlogEntry" EntitySet="BlogEntries" />
+      <End Role="BlogEntryPhoto" EntitySet="BlogEntryPhotoes" />
+    </AssociationSet>
+    <EntitySet Name="Comments" EntityType="BlogDbModel.Comment" />
+    <EntitySet Name="CommentUsers" EntityType="BlogDbModel.CommentUser" />
+    <AssociationSet Name="FK_Comments_BlogEntry" Association="BlogDbModel.FK_Comments_BlogEntry">
+      <End Role="BlogEntry" EntitySet="BlogEntries" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_CommentUser" Association="BlogDbModel.FK_Comments_CommentUser">
+      <End Role="CommentUser" EntitySet="CommentUsers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdminMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TopMenuId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="AdminMenu1" Relationship="BlogDbModel.FK_AdminMenu_AdminMenu" FromRole="AdminMenu" ToRole="AdminMenu1" />
+    <NavigationProperty Name="AdminMenu2" Relationship="BlogDbModel.FK_AdminMenu_AdminMenu" FromRole="AdminMenu1" ToRole="AdminMenu" />
+  </EntityType>
+  <Association Name="FK_AdminMenu_AdminMenu">
+    <End Type="BlogDbModel.AdminMenu" Role="AdminMenu" Multiplicity="0..1" />
+    <End Type="BlogDbModel.AdminMenu" Role="AdminMenu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminMenu1">
+        <PropertyRef Name="TopMenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsMailConfirmed" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ActivationCode" Type="Guid" />
+    <NavigationProperty Name="BlogEntries" Relationship="BlogDbModel.FK_BlogEntry_User" FromRole="User" ToRole="BlogEntry" />
+  </EntityType>
+  <EntityType Name="BlogEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Category" Relationship="BlogDbModel.FK_BlogEntry_Category" FromRole="BlogEntry" ToRole="Category" />
+    <NavigationProperty Name="User" Relationship="BlogDbModel.FK_BlogEntry_User" FromRole="BlogEntry" ToRole="User" />
+    <NavigationProperty Name="BlogEntryPhotoes" Relationship="BlogDbModel.FK_BlogEntryPhoto_BlogEntry" FromRole="BlogEntry" ToRole="BlogEntryPhoto" />
+    <Property Name="Abstract" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="BlogDbModel.FK_Comments_BlogEntry" FromRole="BlogEntry" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="BlogEntryPhoto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogEntryId" Type="Int32" />
+    <Property Name="PhotoPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BlogEntry" Relationship="BlogDbModel.FK_BlogEntryPhoto_BlogEntry" FromRole="BlogEntryPhoto" ToRole="BlogEntry" />
+  </EntityType>
+  <Association Name="FK_BlogEntry_Category">
+    <End Type="BlogDbModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="BlogDbModel.BlogEntry" Role="BlogEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogEntry">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogEntry_User">
+    <End Type="BlogDbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="BlogDbModel.BlogEntry" Role="BlogEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogEntry">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogEntryPhoto_BlogEntry">
+    <End Type="BlogDbModel.BlogEntry" Role="BlogEntry" Multiplicity="0..1" />
+    <End Type="BlogDbModel.BlogEntryPhoto" Role="BlogEntryPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogEntry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogEntryPhoto">
+        <PropertyRef Name="BlogEntryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="BlogEntryId" Type="Int32" />
+    <Property Name="CommentUserId" Type="Int32" />
+    <NavigationProperty Name="BlogEntry" Relationship="BlogDbModel.FK_Comments_BlogEntry" FromRole="Comment" ToRole="BlogEntry" />
+    <NavigationProperty Name="CommentUser" Relationship="BlogDbModel.FK_Comments_CommentUser" FromRole="Comment" ToRole="CommentUser" />
+  </EntityType>
+  <EntityType Name="CommentUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="BlogDbModel.FK_Comments_CommentUser" FromRole="CommentUser" ToRole="Comment" />
+  </EntityType>
+  <Association Name="FK_Comments_BlogEntry">
+    <End Type="BlogDbModel.BlogEntry" Role="BlogEntry" Multiplicity="0..1" />
+    <End Type="BlogDbModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogEntry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="BlogEntryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_CommentUser">
+    <End Type="BlogDbModel.CommentUser" Role="CommentUser" Multiplicity="0..1" />
+    <End Type="BlogDbModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommentUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="CommentUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

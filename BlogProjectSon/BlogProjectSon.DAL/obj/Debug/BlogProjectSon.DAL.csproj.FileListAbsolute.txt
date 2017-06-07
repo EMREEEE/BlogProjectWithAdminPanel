@@ -1,0 +1,12 @@
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\obj\Debug\BlogProjectSon.DAL.csprojResolveAssemblyReference.cache
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\BlogProjectSon.DAL.dll.config
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\BlogProjectSon.DAL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\BlogProjectSon.DAL.pdb
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\BlogProjectSon.MODEL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\EntityFramework.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\BlogProjectSon.MODEL.pdb
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\EntityFramework.xml
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\obj\Debug\BlogProjectSon.DAL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.DAL\obj\Debug\BlogProjectSon.DAL.pdb

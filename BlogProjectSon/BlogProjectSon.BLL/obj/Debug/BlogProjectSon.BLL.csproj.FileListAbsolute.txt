@@ -1,0 +1,14 @@
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.BLL.dll.config
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.BLL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.BLL.pdb
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\EntityFramework.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\EntityFramework.xml
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\obj\Debug\BlogProjectSon.BLL.csprojResolveAssemblyReference.cache
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\obj\Debug\BlogProjectSon.BLL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\obj\Debug\BlogProjectSon.BLL.pdb
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.DAL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.MODEL.dll
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.DAL.pdb
+D:\Vektorel Kurs Örnekleri\kursOrnekleri\BlogProjectSon\BlogProjectSon.BLL\bin\Debug\BlogProjectSon.MODEL.pdb
