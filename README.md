@@ -1,1 +1,1 @@
-# BlogProjectWithAdminPanel
+# BlogProject
